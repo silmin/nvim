@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- define filetypes
 ---------------------------------------------------------------------------------
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'go', 'python', 'zig' },
+  pattern = { 'go', 'python' },
   callback = function()
     vim.opt_local.autoindent = true
     vim.opt_local.smartindent = true
@@ -69,23 +69,67 @@ vim.api.nvim_create_autocmd('FileType', {
 ---------------------------------------------------------------------------------
 -- define keymaps
 ---------------------------------------------------------------------------------
+vim.g.mapleader = ' '
+
+-- Basic movement (from your init.vim)
+vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true })
+vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true })
+vim.api.nvim_set_keymap('n', ';', ':', { noremap = true })
+
+-- Yank to system clipboard
+vim.api.nvim_set_keymap('n', 'gy', '"+y', { noremap = true })
+vim.api.nvim_set_keymap('v', 'gy', '"+y', { noremap = true })
+
+-- Escape with C-j in insert mode
+vim.api.nvim_set_keymap('i', '<C-j>', '<Esc>', { noremap = true })
+
+-- Movement shortcuts
+vim.api.nvim_set_keymap('n', '<S-k>', '{', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-j>', '}', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-h>', '^', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-l>', '$', { noremap = true })
+vim.api.nvim_set_keymap('v', '<S-k>', '{', { noremap = true })
+vim.api.nvim_set_keymap('v', '<S-j>', '}', { noremap = true })
+vim.api.nvim_set_keymap('v', '<S-h>', '^', { noremap = true })
+vim.api.nvim_set_keymap('v', '<S-l>', '$', { noremap = true })
+
+-- Window navigation
+vim.api.nvim_set_keymap('n', 'wh', '<C-w>h', { noremap = true })
+vim.api.nvim_set_keymap('n', 'wj', '<C-w>j', { noremap = true })
+vim.api.nvim_set_keymap('n', 'wk', '<C-w>k', { noremap = true })
+vim.api.nvim_set_keymap('n', 'wl', '<C-w>l', { noremap = true })
+vim.api.nvim_set_keymap('n', 'wn', ':tabn<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'wp', ':tabp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'wt', ':tabnew<CR>', { noremap = true, silent = true })
+
+-- Jump back
+vim.api.nvim_set_keymap('n', '<S-o>', '<C-o>', { noremap = true })
+
+-- Window resize (from friend's config)
 vim.api.nvim_set_keymap('n', '<Left>', '<C-w><<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Right>', '<C-w>><CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Up>', '<C-w>+<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Down>', '<C-w>-<CR>', { noremap = true })
+
+-- Terminal
 vim.api.nvim_set_keymap('t', ';;', '<C-\\><C-n>', { noremap = true })
-vim.g.mapleader = ' '
+
+-- Scroll
 vim.api.nvim_set_keymap('n', '<ScrollWheelUp>', '<C-Y>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<ScrollWheelDown>', '<C-E>', { noremap = true })
+
+-- Tab navigation
 vim.api.nvim_set_keymap('n', '<S-i>', '<C-i>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', 'gT', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Tab>', 'gt', { noremap = true, silent = true })
+
+-- Quickfix navigation
 vim.api.nvim_set_keymap('n', '<C-j>', ':cnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-k>', ':cprev<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-c>', ':cclose<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ';c', ':let @+=expand("%:p")<CR>', { noremap = true, silent = true }) -- copy filepath of buffer
 
--- Set cmdheight
+-- Copy filepath
+vim.api.nvim_set_keymap('n', ';c', ':let @+=expand("%:p")<CR>', { noremap = true, silent = true })
 
 -- Use Terminal shortcut
 vim.cmd([[
@@ -133,18 +177,32 @@ vim.o.belloff = 'all'
 vim.o.number = true
 vim.o.scrolloff = 999 -- Keep the cursor centered in the screen
 
+-- From your init.vim
+vim.o.backup = false
+vim.o.swapfile = false
+vim.o.autoread = true
+vim.o.hidden = true
+vim.o.showcmd = true
+vim.o.showmode = false
+vim.o.showmatch = true
+vim.o.virtualedit = 'onemore'
+vim.o.visualbell = true
+vim.o.wrapscan = true
+vim.o.inccommand = 'split'
+vim.o.whichwrap = 'b,s,h,l,<,>,[,]'
+
 -- Tab and Indentation
-vim.o.autoindent = true  -- Continue indent of the previous line on newline
-vim.o.smartindent = true -- Auto-insert indentation according to syntax
-vim.o.shiftwidth = 4     -- Indentation amount for < and > commands
-vim.o.tabstop = 4        -- Number of spaces that a tab in the file counts for
-vim.o.expandtab = true   -- Convert tabs to spaces
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.expandtab = true
 
 -- String search settings
-vim.o.incsearch = true  -- Incremental search, searching as you type
-vim.o.ignorecase = true -- Case insensitive searching
-vim.o.smartcase = true  -- Case sensitive if search pattern contains uppercase
-vim.o.hlsearch = true   -- Highlight search results
+vim.o.incsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.hlsearch = true
 
 -- window split config
 vim.o.splitright = true
@@ -175,12 +233,10 @@ vim.opt.path:append(vim.fn.getcwd() .. '/**')
 vim.opt.wildignore:append { '*/.git/*', '*/node_modules/*' }
 
 -- configure netrw
-vim.g.netrw_liststyle = 3 -- default listing style as treeview
+vim.g.netrw_liststyle = 3
 
 ---------------------------------------------------------------------------------
 -- manage plugins by vim.pack
--- concept:
--- - disable unnecessary default plugins for better performance
 ---------------------------------------------------------------------------------
 local disabled_built_ins = {
   '2html_plugin',
@@ -204,17 +260,15 @@ end
 
 vim.pack.add({
   { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
-  { src = 'https://github.com/devoc09/sphere.vim' },
+  { src = 'https://github.com/shaunsingh/nord.nvim' },  -- Changed to nord
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',        version = 'master' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
   { src = 'https://github.com/windwp/nvim-ts-autotag' },
-  { src = 'https://github.com/phaazon/hop.nvim',                       version = 'v2' },
-  -- { src = 'https://github.com/devoc09/session-manager.nvim' }, TODO: there is a bug when load by vim.pack.add. unload plugins when session auto load
+  { src = 'https://github.com/phaazon/hop.nvim', version = 'v2' },
   { src = 'https://github.com/folke/snacks.nvim' },
-  { src = 'https://github.com/ziglang/zig.vim' },
   { src = 'https://github.com/dcampos/nvim-snippy' },
   { src = 'https://github.com/hrsh7th/nvim-cmp' },
   { src = 'https://github.com/hrsh7th/cmp-nvim-lsp' },
@@ -222,12 +276,15 @@ vim.pack.add({
   { src = 'https://github.com/hrsh7th/cmp-buffer' },
   { src = 'https://github.com/dcampos/cmp-snippy' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
+  { src = 'https://github.com/tpope/vim-surround' },
+  { src = 'https://github.com/tpope/vim-fugitive' },
+  { src = 'https://github.com/tpope/vim-commentary' },
 })
 
 -- configure treesitter
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
-  ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline', 'go', 'rust', 'zig', 'typescript' },
+  ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline', 'go', 'rust', 'typescript' },
   ignore_install = { 'javascript' },
   sync_install = false,
   auto_install = false,
@@ -251,14 +308,20 @@ ts_autotag.setup({
   },
 })
 
--- configure sphere.vim
-vim.g.transparent_background = 1
-vim.cmd('colorscheme sphere')
+-- configure nord colorscheme
+vim.cmd('colorscheme nord')
+vim.cmd('hi VertSplit guifg=#4C566A guibg=NONE ctermfg=8 ctermbg=NONE')
 
 -- configure fzf-lua
 local fzflua = require('fzf-lua')
 vim.keymap.set('n', '<C-g>', function() fzflua.files() end)
 vim.keymap.set('n', '<C-p>', function() fzflua.grep() end)
+-- Telescope-style keymaps from your init.vim
+vim.keymap.set('n', '<leader>ff', function() fzflua.files() end)
+vim.keymap.set('n', '<leader>fg', function() fzflua.live_grep() end)
+vim.keymap.set('n', '<leader>fb', function() fzflua.buffers() end)
+vim.keymap.set('n', '<leader>fh', function() fzflua.help_tags() end)
+vim.keymap.set('n', '<Leader>fz', function() fzflua.files() end)
 
 -- configure hop.nvim
 local hop = require('hop')
@@ -348,7 +411,6 @@ vim.lsp.enable({
   'lua_ls',
   'tsgo',
   'rust_analyzer',
-  'zls'
 })
 
 -- Keymaps of LSP
@@ -380,9 +442,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client:supports_method('textDocument/codeAction') then
       vim.keymap.set('n', '<Leader>k', vim.lsp.buf.code_action, keyopts)
     end
-    if client:supports_method('textDocument/inlineCompletion') then
-      vim.keymap.set('i', '<C-j>', vim.lsp.inline_completion.get, keyopts)
-    end
+    -- if client:supports_method('textDocument/inlineCompletion') then
+    --   vim.keymap.set('i', '<C-j>', vim.lsp.inline_completion.get, keyopts)
+    -- end
   end,
 })
 
@@ -400,6 +462,47 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end
 })
+
+-- configure gitsigns.nvim
+local gitsigns = require('gitsigns')
+gitsigns.setup({
+  current_line_blame = false,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol',
+    delay = 500,
+  },
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+    local opts = { buffer = bufnr }
+
+    -- Blame
+    vim.keymap.set('n', '<Leader>hb', gs.toggle_current_line_blame, opts)
+    vim.keymap.set('n', '<Leader>hB', function() gs.blame_line({ full = true }) end, opts)
+
+    -- Navigation
+    vim.keymap.set('n', ']c', gs.next_hunk, opts)
+    vim.keymap.set('n', '[c', gs.prev_hunk, opts)
+
+    -- Actions
+    vim.keymap.set('n', '<Leader>hs', gs.stage_hunk, opts)
+    vim.keymap.set('n', '<Leader>hr', gs.reset_hunk, opts)
+    vim.keymap.set('n', '<Leader>hp', gs.preview_hunk, opts)
+  end
+})
+
+-- configure colorizer
+require('colorizer').setup({
+  filetypes = {'*'},
+  user_default_options = {
+    RGB = true,
+    RRGGBB = true,
+    names = false,
+    css = true,
+  }
+})
+-- configure nvim-web-devicons
+require('nvim-web-devicons').setup()
 
 -- Diagnostics
 vim.diagnostic.config({
