@@ -309,8 +309,10 @@ ts_autotag.setup({
 })
 
 -- configure nord colorscheme
+vim.g.nord_disable_background = true
 vim.cmd('colorscheme nord')
 vim.cmd('hi VertSplit guifg=#4C566A guibg=NONE ctermfg=8 ctermbg=NONE')
+vim.cmd('hi CursorLine guibg=NONE ctermbg=NONE gui=underline cterm=underline')
 
 -- configure fzf-lua
 local fzflua = require('fzf-lua')
