@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'c', 'vim', 'lua', 'bash', 'fish' },
+  pattern = { 'c', 'vim', 'lua', 'bash', 'fish', 'zsh' },
   callback = function()
     vim.opt_local.autoindent = true
     vim.opt_local.smartindent = true
@@ -260,14 +260,14 @@ end
 
 vim.pack.add({
   { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
-  { src = 'https://github.com/shaunsingh/nord.nvim' },  -- Changed to nord
+  { src = 'https://github.com/shaunsingh/nord.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',        version = 'master' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
   { src = 'https://github.com/windwp/nvim-ts-autotag' },
-  { src = 'https://github.com/phaazon/hop.nvim', version = 'v2' },
+  { src = 'https://github.com/phaazon/hop.nvim',                       version = 'v2' },
   { src = 'https://github.com/folke/snacks.nvim' },
   { src = 'https://github.com/dcampos/nvim-snippy' },
   { src = 'https://github.com/hrsh7th/nvim-cmp' },
@@ -413,6 +413,7 @@ vim.lsp.enable({
   'lua_ls',
   'tsgo',
   'rust_analyzer',
+  'pyright',
 })
 
 -- Keymaps of LSP
@@ -495,7 +496,7 @@ gitsigns.setup({
 
 -- configure colorizer
 require('colorizer').setup({
-  filetypes = {'*'},
+  filetypes = { '*' },
   user_default_options = {
     RGB = true,
     RRGGBB = true,
