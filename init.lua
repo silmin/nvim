@@ -105,23 +105,12 @@ vim.api.nvim_set_keymap('n', 'wt', ':tabnew<CR>', { noremap = true, silent = tru
 -- Jump back
 vim.api.nvim_set_keymap('n', '<S-o>', '<C-o>', { noremap = true })
 
--- Window resize (from friend's config)
-vim.api.nvim_set_keymap('n', '<Left>', '<C-w><<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Right>', '<C-w>><CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Up>', '<C-w>+<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Down>', '<C-w>-<CR>', { noremap = true })
-
 -- Terminal
 vim.api.nvim_set_keymap('t', ';;', '<C-\\><C-n>', { noremap = true })
 
 -- Scroll
 vim.api.nvim_set_keymap('n', '<ScrollWheelUp>', '<C-Y>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<ScrollWheelDown>', '<C-E>', { noremap = true })
-
--- Tab navigation
-vim.api.nvim_set_keymap('n', '<S-i>', '<C-i>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<S-Tab>', 'gT', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Tab>', 'gt', { noremap = true, silent = true })
 
 -- Quickfix navigation
 vim.api.nvim_set_keymap('n', '<C-j>', ':cnext<CR>', { noremap = true, silent = true })
