@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- define filetypes
 ---------------------------------------------------------------------------------
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'go', 'python' },
+  pattern = { 'go', 'python', 'rust' },
   callback = function()
     vim.opt_local.autoindent = true
     vim.opt_local.smartindent = true
@@ -301,7 +301,7 @@ ts_autotag.setup({
 vim.g.nord_disable_background = true
 vim.cmd('colorscheme nord')
 vim.cmd('hi VertSplit guifg=#4C566A guibg=NONE ctermfg=8 ctermbg=NONE')
-vim.cmd('hi CursorLine guibg=NONE ctermbg=NONE gui=underline cterm=underline')
+vim.cmd('hi CursorLine guibg=NONE ctermbg=NONE gui=underline cterm=underline guisp=#3B4252')
 
 -- configure fzf-lua
 local fzflua = require('fzf-lua')
