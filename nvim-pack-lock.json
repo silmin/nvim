@@ -16,6 +16,10 @@
       "rev": "6e39210",
       "src": "https://github.com/dcampos/cmp-snippy"
     },
+    "evergarden": {
+      "rev": "895c8f823b6a8ca06679f454b0865030ef9fa7dc",
+      "src": "https://codeberg.org/evergarden/nvim.git"
+    },
     "fzf-lua": {
       "rev": "9a0704e8af8f8442110ff22a83b5608366b235df",
       "src": "https://github.com/ibhagwan/fzf-lua"

@@ -250,13 +250,14 @@ end
 vim.pack.add({
   { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
   { src = 'https://github.com/shaunsingh/nord.nvim' },
+  { src = 'https://codeberg.org/evergarden/nvim.git', name='evergarden' },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',        version = 'master' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
   { src = 'https://github.com/windwp/nvim-ts-autotag' },
-  { src = 'https://github.com/phaazon/hop.nvim',                       version = 'v2' },
+  { src = 'https://github.com/phaazon/hop.nvim', version = 'v2' },
   { src = 'https://github.com/folke/snacks.nvim' },
   { src = 'https://github.com/dcampos/nvim-snippy' },
   { src = 'https://github.com/hrsh7th/nvim-cmp' },
@@ -302,6 +303,26 @@ vim.g.nord_disable_background = true
 vim.cmd('colorscheme nord')
 vim.cmd('hi VertSplit guifg=#4C566A guibg=NONE ctermfg=8 ctermbg=NONE')
 vim.cmd('hi CursorLine guibg=NONE ctermbg=NONE gui=underline cterm=underline guisp=#3B4252')
+
+-- configure evergarden colorscheme
+-- require('evergarden').setup({
+--   theme = {
+--     variant = 'fall', -- 'winter'|'fall'|'spring'|'summer'
+--     accent = 'green',
+--   },
+--   editor = {
+--     transparent_background = true,
+--     sign = { color = 'none' },
+--     float = {
+--       color = 'mantle',
+--       solid_border = false,
+--     },
+--     completion = {
+--       color = 'surface0',
+--     },
+--   },
+-- })
+-- vim.cmd('colorscheme evergarden')
 
 -- configure fzf-lua
 local fzflua = require('fzf-lua')
